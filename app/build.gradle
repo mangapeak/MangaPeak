@@ -179,14 +179,7 @@ dependencies {
 	implementation libs.firebase.database
 	implementation libs.firebase.crashlytics
 	implementation libs.firebase.inappmessaging.display
-	def parsersVersion = libs.versions.parsers.get()
-	if (System.properties.containsKey('parsersVersionOverride')) {
-		// usage:
-		// -DparsersVersionOverride=$(curl -s https://api.github.com/repos/kotatsuapp/kotatsu-parsers/commits/master -H "Accept: application/vnd.github.sha" | cut -c -10)
-		parsersVersion = System.getProperty('parsersVersionOverride')
-	}
-	//noinspection UseTomlInstead
-	implementation("com.github.hany18h:kotatsu-parsers:$parsersVersion") {
+	implementation("com.github.hany18h:kotatsu-parsers:${libs.versions.parsers.get()}") {
 		exclude group: 'org.json', module: 'json'
 	}
 

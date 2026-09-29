@@ -30,18 +30,3 @@ dependencyResolutionManagement {
 
 include ':app'
 rootProject.name = "MangaPeak"
-
-// The maintained parser fork is bundled with this repository so a checkout
-// contains the complete source used by the application.
-def localParsers = file('kotatsu-parsers')
-def useLocalParsers = providers.gradleProperty('useLocalParsers')
-	.orElse('true')
-	.get()
-	.toBoolean()
-if (useLocalParsers && localParsers.isDirectory()) {
-	includeBuild(localParsers) {
-		dependencySubstitution {
-			substitute module('com.github.hany18h:kotatsu-parsers') using project(':')
-		}
-	}
-}
